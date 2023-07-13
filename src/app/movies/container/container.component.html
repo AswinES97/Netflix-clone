@@ -1,0 +1,13 @@
+<app-header
+[movieData]="data">
+
+</app-header>
+
+<app-body
+[movieData] = "data"
+(key)="handleVideoKey($event)"
+></app-body>
+
+<app-video-player 
+[videoId]="videoKey"
+></app-video-player>

@@ -1,0 +1,83 @@
+
+<div class="container my-3 mt-5" id="featureContainer">
+  <div class="row mx-auto my-auto justify-content-center">
+    <div id="featureCarousel" class="carousel slide" data-bs-interval="false"  data-bs-ride="carousel">
+        <!-- Carousel Controls. OPTIONAL -->
+      <div class="float-end pe-md-4">
+        <a class="indicator" href="#featureCarousel" role="button" data-bs-slide="prev">
+         <
+        </a> &nbsp;&nbsp;
+        <a class="w-aut indicator" href="#featureCarousel" role="button" data-bs-slide="next">
+          >
+        </a>
+      </div>
+      <!-- Add Slides To The Carousel -->
+      <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active" >
+          <ng-container *ngFor="let data of movieData.results; let i = index">
+            <div class="col-md-2 " *ngIf="i<5">
+              <div class="card-body ">
+                <div class="card-img hover">
+                  <img (click)="showVideo(data.id)" style="cursor: pointer;"
+                    src="https://image.tmdb.org/t/p/w500{{ data.poster_path }}"
+                    class="img-fluid"
+                  />
+                  <p class="card-text" style="color: rgb(255, 255, 255);cursor: pointer;" (click)="showVideo(data.id)">{{ data.original_title }}</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          </div>
+          <div class="carousel-item" >
+            <ng-container *ngFor="let data of movieData.results; let i = index">
+              <div class="col-md-2 " *ngIf="i>5 && i<11">
+                <div class="card-body ">
+                  <div class="card-img hover">
+                    <img (click)="showVideo(data.id)" style="cursor: pointer;"
+                      src="https://image.tmdb.org/t/p/w500{{ data.poster_path }}"
+                      class="img-fluid"
+                    />
+                    <p class="card-text" style="color: rgb(255, 255, 255);cursor: pointer;" (click)="showVideo(data.id)">{{ data.original_title }}</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            </div>
+            <div class="carousel-item" >
+              <ng-container *ngFor="let data of movieData.results; let i = index">
+                <div class="col-md-2" *ngIf="i>11 && i<17">
+                  <div class="card-body ">
+                    <div class="card-img hover">
+                      <img (click)="showVideo(data.id)" style="cursor: pointer;"
+                        src="https://image.tmdb.org/t/p/w500{{ data.poster_path }}"
+                        class="img-fluid"
+                      />
+                      <p class="card-text" style="color: rgb(255, 255, 255);cursor: pointer;" (click)="showVideo(data.id)">{{ data.original_title }}</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  let myCarousel = document.querySelectorAll('#featureContainer .carousel .carousel-item');
+      myCarousel.forEach((el) => {
+        const minPerSlide = 5
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+          if (!next) {
+            // wrap carousel by using first child
+            next = myCarousel[0]
+          }
+          let cloneChild = next.cloneNode(true)
+          el.appendChild(cloneChild.children[0])
+          next = next.nextElementSibling
+        }
+      })
+  </script>
+  
